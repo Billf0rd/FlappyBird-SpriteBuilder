@@ -64,6 +64,13 @@
     _clouds = @[_cloud1, _cloud2];
     _bushes = @[_bush1, _bush2];
     
+    
+    for (CCNode *ground in _grounds) {
+        // set collision txpe
+        ground.physicsBody.collisionType = @"level";
+        ground.zOrder = DrawingOrderGround;
+        }
+    
     _parallaxBackground = [CCParallaxNode node];
     [_parallaxContainer addChild:_parallaxBackground];
     
@@ -82,12 +89,6 @@
         [self removeChild:cloud];
         [_parallaxBackground addChild:cloud z:0 parallaxRatio:_cloudParallaxRatio positionOffset:offset];
     }
-    
-    for (CCNode *ground in _grounds) {
-        // set collision txpe
-        ground.physicsBody.collisionType = @"level";
-        ground.zOrder = DrawingOrderGround;
-        }
     
     // set this class as delegate
     physicsNode.collisionDelegate = self;
